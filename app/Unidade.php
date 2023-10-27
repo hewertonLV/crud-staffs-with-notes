@@ -38,9 +38,9 @@ class Unidade extends Model
     {
         $status = Colaborador::where('unidade_id', $id_Unit)->get()->count();
         if ($status == 0) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public function value()
