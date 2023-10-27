@@ -11,15 +11,15 @@
                     <div class="row">
                         <input type="hidden" name="id" id="id_pro" value="">
                         <div class="col-md-12 col-sm-12">
-                            <x-input name="nome_fantasia" id="addnome" label="Nome" required="true"
+                            <x-input name="nome_fantasia" id="addnome" label="Nome Fantasia" required="true"
                                      type="text" value=""/>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <x-input name="razao_social" id="addcnpj" label="CPF" required="true"
+                            <x-input name="razao_social" id="addcnpj" label="Razão Social" required="true"
                                      type="text" value=""/>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <x-input name="cnpj" id="addunidade_id" label="Unidade" required="true"
+                            <x-input name="cnpj" id="addunidade_id" label="CNPJ" required="true"
                                      type="text" value=""/>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return \App\Colaborador::colaboradoresWithoutNote();
+    return \App\Unidade::checkBondWithStaff(877);
 });
 Route::prefix('colaborador')->group(function () {
     Route::get('index', [ColaboradorController::class, 'index'])->name('ColaboradorShow');

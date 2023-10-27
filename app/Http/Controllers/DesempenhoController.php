@@ -40,8 +40,8 @@ class DesempenhoController
 
         $this->desempenhoColaborator->fill($request->input());
         $this->desempenhoColaborator->push();
-
-        return redirect()->route('CargoColaboradorShow')->with('success', 'Desempenho do colaborador criado com sucesso.');
+        toastr()->success( 'Detalhe do colaborador criado com sucesso','Operação Realizada');
+        return redirect()->route('CargoColaboradorShow');
     }
 
     public static function edit($id)
@@ -63,8 +63,8 @@ class DesempenhoController
         $request['cnpj'] = str_replace(array('.', '-', '/'), "", $request->cnpj);
         $desempenhoColaborator->fill($request->input());
         $desempenhoColaborator->update();
-
-        return redirect()->route('CargoColaboradorShow')->with('success', 'Desempenho do colaborador atualizado com sucesso.');
+        toastr()->success( 'Detalhes do colaborador atualizado com sucesso','Operação Realizada');
+        return redirect()->route('CargoColaboradorShow');
     }
 
     public static function destroy(Request $request)
@@ -73,9 +73,11 @@ class DesempenhoController
 
         if ($desempenhoColaborator) {
             $desempenhoColaborator->delete();
-            return redirect()->route('CargoColaboradorShow')->with('success', 'Registro excluído com sucesso.');
+            toastr()->success( 'Registro excluido com sucesso','Operação Realizada');
+            return redirect()->route('CargoColaboradorShow');
         } else {
-            return redirect()->route('CargoColaboradorShow')->with('error', 'Registro não encontrado.');
+            toastr()->error( 'Não foi possivel excluir o registro','Erro na Operação');
+            return redirect()->route('CargoColaboradorShow');
         }
     }
 }

@@ -56,5 +56,23 @@ class CargoColaborador extends Model
         return $cargoColaborador[0];
     }
 
+    public static function checkBondWithCargo($id_cargo)
+    {
+        $status = Colaborador::where('cargo_id', $id_cargo)->get()->count();
+        if ($status == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static function checkBondWithStaff($id_colaborador)
+    {
+        $status = CargoColaborador::where('colaborador_id', $id_colaborador)->get()->count();
+        if ($status == 0) {
+            return false;
+        }
+        return true;
+    }
+
     use SoftDeletes;
 }

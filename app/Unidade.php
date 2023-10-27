@@ -25,6 +25,24 @@ class Unidade extends Model
         'cnpj' => 'CNPJ',
     ];
 
+    public static function validarDados(array $data)
+    {
+        return \Illuminate\Support\Facades\Validator::make($data, [
+            'nome_fantasia' => 'required',
+            'razao_social' => 'required',
+            'cnpj' => 'required',
+
+        ]);
+    }
+    public static function checkBondWithStaff($id_Unit)
+    {
+        $status = Colaborador::where('unidade_id', $id_Unit)->get()->count();
+        if ($status == 0) {
+            return false;
+        }
+        return true;
+    }
+
     public function value()
     {
         return $this->id;
@@ -34,6 +52,6 @@ class Unidade extends Model
     {
         return $this->nome_fantasia;
     }
-    
+
     use SoftDeletes;
 }

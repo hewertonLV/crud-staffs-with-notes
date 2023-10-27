@@ -34,8 +34,8 @@ class UnidadeController extends Controller
         $request['cnpj'] = str_replace(array('.','-','/'), "", $request->cnpj);
         $this->unidade->fill($request->input());
         $this->unidade->push();
-
-        return redirect()->route('unidadeShow')->with('success', 'Unidade criado com sucesso.');
+        toastr()->success( 'Operação Realizada','Unidade criada com sucesso');
+        return redirect()->route('UnidadeShow');
     }
 
     public function update(Request $request)
@@ -45,20 +45,27 @@ class UnidadeController extends Controller
         $request['cnpj'] = str_replace(array('.','-','/'), "", $request->cnpj);
         $unidade->fill($request->input());
         $unidade->update();
-
-        return redirect()->route('UnidadeShow')->with('success', 'Unidade atualizado com sucesso.');
+        toastr()->success( 'Unidade atualizado com sucesso','Operação Realizada');
+        return redirect()->route('UnidadeShow');
     }
 
     public static function destroy(Request $request)
     {
         $unidade = unidade::find($request->id);
-
-        if ($unidade) {
-            $unidade->delete();
-            return redirect()->route('UnidadeShow')->with('success', 'Registro excluído com sucesso.');
-        } else {
-            return redirect()->route('UnidadeShow')->with('error', 'Registro não encontrado.');
+        if (Unidade::checkBondWithStaff($request->id)){
+            if ($unidade) {
+                $unidade->delete();
+                toastr()->success( 'Registro excluído com sucesso','Operação Realizada');
+                return redirect()->route('UnidadeShow');
+            } else {
+                toastr()->error('Unidade '.$unidade->nome.' não encontrada','Falha na operação');
+                return redirect()->route('UnidadeShow');
+            }
+        }else {
+            toastr()->error( 'Unidade '.$unidade->nome.' possui vinculo com colaborador','Falha na operação');
+            return redirect()->route('UnidadeShow');
         }
+
     }
 
 }

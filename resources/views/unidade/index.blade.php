@@ -16,13 +16,14 @@
 @section('content')
     <div class="card">
         <div class="card-body"><h5 class="card-title "> Listagem de unidades</h5>
-            <table class="table text-center table-striped table-hover">
+            <table id="example" class="table table-striped" style="width:100%">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome fantasia</th>
-                    <th scope="col">Razão Social</th>
-                    <th scope="col">CNPJ</th>
+                    <th>#</th>
+                    <th>Nome fantasia</th>
+                    <th>Razão Social</th>
+                    <th>CNPJ</th>
+                    <th>Ações</th>
                 </tr>
                 </thead>
                 <tbody>
